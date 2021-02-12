@@ -1,0 +1,29 @@
+name: AutoItRipper
+version: $SERVICE_TAG
+description: Extract AutoIt scripts embedded in PE binaries
+
+accepts: executable/windows/.*
+rejects: empty|metadata/.*
+
+stage: CORE
+category: Extraction
+
+file_required: true
+timeout: 120
+disable_cache: false
+
+enabled: true
+is_external: false
+licence_count: 0
+
+heuristics:
+  - heur_id: 1
+    name: Extracted AutoIt script
+    score: 100
+    filetype: executable/windows/
+    description: AutoIt script extracted from a PE file
+
+docker_config:
+  image: x1mus/assemblyline-service-autoit-ripper:$SERVICE_TAG
+  cpu_cores: 1
+  ram_mb: 256
